@@ -4,12 +4,9 @@ import com.example.demo.entities.Loadout;
 import com.example.demo.model.LoadoutRequest;
 import com.example.demo.services.ToAssembleLoadout;
 
-import com.example.demo.services.ToAssembleLoadout;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
@@ -17,8 +14,20 @@ public class LoadoutController {
     @Autowired
     ToAssembleLoadout toAssembleLoadout;
 
-    @PostMapping
+    @PostMapping("/create")
     public Loadout create(@RequestBody LoadoutRequest loadout){
-        return toAssembleLoadout.create(loadout);
+        return toAssembleLoadout.createLoadout(loadout);
+    }
+    @PostMapping("/delete")
+    public ResponseEntity<String> delete(@RequestParam int id) {
+        boolean result = toAssembleLoadout.deleteLoadout(id);
+        if(result){
+            return ResponseEntity.ok().body("Loadout deleted");
+        }
+        return ResponseEntity.badRequest().body("ID of loadout does not exist");
+    }
+    @PostMapping("/update")
+    public void update(@RequestBody Loadout loadout){
+        toAssembleLoadout.updateLoadout(loadout);
     }
 }

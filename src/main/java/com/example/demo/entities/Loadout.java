@@ -20,7 +20,7 @@ public class Loadout {
     private String primaryWeapon;
     private String secondaryWeapon;
     private BigInteger totalPrice;
-    @Column(name = "date of purchase")
+    @Column(name = "dateOfPurchase")
     private Date date;
 
     public Loadout(LoadoutRequest loadoutRequest){

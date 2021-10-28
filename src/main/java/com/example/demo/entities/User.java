@@ -16,17 +16,33 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column(columnDefinition = "TEXT")
     private String firstName;
     private String email;
     private String secondName;
+    private int age;
+    private String password;
     @ManyToMany
     private List<Loadout> loadouts;
 
-    public User(final String firstName, final String secondName, final String email){
+    public User(final Long id, final String firstName, final String secondName, final int age, final String email, final String password){
         this.firstName =firstName;
         this.secondName = secondName;
         this.email = email;
+        this.age = age;
+        this.password = password;
+        this.id = id;
+    }
+    public User(final String firstName, final String secondName, final int age, final String email, final String password){
+        this.firstName =firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.age = age;
+        this.password = password;
+    }
+
+    public User(final long id) {
+        this.id = id;
     }
 }

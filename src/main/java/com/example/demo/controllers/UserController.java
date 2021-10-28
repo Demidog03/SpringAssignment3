@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.helpers.ValidateHelper;
-import com.example.demo.model.User;
+import com.example.demo.entities.User;
 import com.example.demo.model.UserRequest;
 import com.example.demo.model.AddLoadoutRequest;
 
@@ -33,6 +33,17 @@ public class UserController {
         }
         return ResponseEntity.badRequest().body("bad request");
     }
+    @PostMapping("/update") public void update(@RequestBody User user){
+        userService.updateUser(user);
+
+    }
+    @PostMapping("/delete") public Object delete(@RequestParam int id){
+        boolean result = userService.deleteUser(id);
+        if(result){
+            return new ResponseEntity("user deleted", HttpStatus.OK);
+        }
+        return ResponseEntity.badRequest().body("user not found");
+    }
 
     @GetMapping("/get") public ResponseEntity getUserById(@RequestParam Integer id) {
         User userRequest = userService.getUser(id);
@@ -49,6 +60,6 @@ public class UserController {
     @PostMapping("/addLoadouts")
     public ResponseEntity addProducts(@RequestBody AddLoadoutRequest request) {
         userService.addLoadoutsToUser(request.getUserId(), request.getLoadoutsIds());
-        return ResponseEntity.ok().body("");
+        return ResponseEntity.ok().body("loadouts added to user");
     }
 }
