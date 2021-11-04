@@ -34,4 +34,7 @@ public class ToAssembleLoadout {
         existingLoadout.setTotalPrice(loadout.getTotalPrice());
         return loadoutRepository.save(existingLoadout);
     }
+    public Loadout getLoadout(@RequestParam int id){
+        return loadoutRepository.findById((long) id).orElse(null);
+    }
 }
