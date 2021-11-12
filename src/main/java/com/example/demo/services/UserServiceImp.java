@@ -81,15 +81,15 @@ public class UserServiceImp implements UserDetailsService {
 
 
     public User updateUser(User user) {
-            User existingUser = userRepository.findById(user.getId()).orElse(null);
-            existingUser.setFirstName(user.getFirstName());
-            existingUser.setSecondName(user.getSecondName());
-            existingUser.setEmail(user.getEmail());
-            existingUser.setAge(user.getAge());
-            existingUser.setPassword(user.getPassword());
-            return userRepository.save(existingUser);
+        User existingUser = userRepository.findById(user.getId()).orElse(null);
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setSecondName(user.getSecondName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setAge(user.getAge());
+        existingUser.setPassword(user.getPassword());
+        return userRepository.save(existingUser);
 
-        }
+    }
 
 
 

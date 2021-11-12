@@ -1,9 +1,11 @@
 package com.example.demo.dto;
 
-public class RequestLogin {
+public class LoginForm {
     private String email;
     private String password;
-
+    public LoginForm(){
+        super();
+    }
     public String getEmail() {
         return email;
     }

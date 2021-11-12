@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
+import java.util.List;
+
 @Service
 public class ToAssembleLoadout {
 
@@ -36,5 +38,8 @@ public class ToAssembleLoadout {
     }
     public Loadout getLoadout(@RequestParam int id){
         return loadoutRepository.findById((long) id).orElse(null);
+    }
+    public List<Loadout> getLoadouts(){
+        return (List<Loadout>) loadoutRepository.findAll();
     }
 }

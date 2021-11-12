@@ -53,7 +53,7 @@ public class UserController {
         userService.updateUser(user);
 
     }
-    @GetMapping("/get/users") public ResponseEntity<List<User>> getUsers(){
+    @GetMapping("/getUsers") public ResponseEntity<List<User>> getUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
     @PostMapping("/delete") public Object delete(@RequestParam int id){
@@ -86,6 +86,5 @@ public class UserController {
         userService.addRoleToUser(role.getEmail(), role.getRoleName());
         return ResponseEntity.ok().build();
     }
-
 
 }
